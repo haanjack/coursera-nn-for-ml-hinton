@@ -1,5 +1,5 @@
 % This function trains a neural network language model.
-function [model] = train(epochs)
+function [model] = train(epochs=1, lr=0.1, dimA=50, dimB=200, mt=0.9, init_parm=0.01)
 % Inputs:
 %   epochs: Number of epochs to run.
 % Output:
@@ -16,12 +16,19 @@ end
 
 % SET HYPERPARAMETERS HERE.
 batchsize = 100;  % Mini-batch size.
-learning_rate = 0.1;  % Learning rate; default = 0.1.
-momentum = 0.1;  % Momentum; default = 0.9.
-numhid1 = 50;  % Dimensionality of embedding space; default = 50.
-numhid2 = 200;  % Number of units in hidden layer; default = 200.
-init_wt = 0.01;  % Standard deviation of the normal distribution
+learning_rate = lr;  % Learning rate; default = 0.1.
+momentum = mt;  % Momentum; default = 0.9.
+numhid1 = dimA;  % Dimensionality of embedding space; default = 50.
+numhid2 = dimB;  % Number of units in hidden layer; default = 200.
+init_wt = init_parm;  % Standard deviation of the normal distribution
                  % which is sampled to get the initial weights; default = 0.01
+fprintf(1, 'epochs %d\n', epochs);
+fprintf(1, 'learning_rate %f\n', learning_rate);
+fprintf(1, 'momentum %f\n', momentum);
+fprintf(1, 'numhid1 %d\n', numhid1);
+fprintf(1, 'numhid2 %d\n', numhid2);
+fprintf(1, 'init_wt %f\n', init_wt);
+pause();
 
 % VARIABLES FOR TRACKING TRAINING PROGRESS.
 show_training_CE_after = 100;
